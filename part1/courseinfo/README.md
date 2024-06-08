@@ -1,8 +1,23 @@
-# React + Vite
+# Introduction to React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Creating React Application via Vite.
 
-Currently, two official plugins are available:
+```
+# npm 6.x (outdated, but still used by some):
+npm create vite@latest part1 --template react
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# npm 7+, extra double-dash is needed:
+npm create vite@latest part1 -- --template react
+```
+
+```
+cd part1
+npm install
+```
+
+Starting an Application
+```
+npm run dev
+```
+
+application has started on localhost port 5173 (default for vite application).
