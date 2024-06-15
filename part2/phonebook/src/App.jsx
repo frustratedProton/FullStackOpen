@@ -3,12 +3,14 @@ import Filter from './components/Filter';
 import PersonForm from './components/PersonForm';
 import Persons from './components/Persons';
 import phoneService from './services/PhoneService';
+import Notification from './components/Notification';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [number, setNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [notification, setNotification] = useState('');
 
   useEffect(() => {
     // console.log('effect');
@@ -32,9 +34,11 @@ const App = () => {
           setPersons(updatedPersons);
           setNewName('');
           setNumber('');
+          setNotification(`Deleted ${name}`)
         })
         .catch((error) => {
-          console.error('Error deleting person:', error);
+          // console.error('Error deleting person:', error);
+          setNotification(`Information of ${name} has already been removed from server`);
         });
     }
   };
@@ -85,9 +89,11 @@ const App = () => {
           setPersons(updatedPersons);
           setNewName('');
           setNumber('');
+          setNotification(`Updated ${newName}`)
         })
         .catch((error) => {
-          console.error('Error updating person:', error);
+          // console.error('Error updating person:', error);
+          setNotification(`Error adding ${newName}`)
         });
     } else {
       const personObject = {
@@ -101,9 +107,11 @@ const App = () => {
           setPersons(persons.concat(returnedPerson));
           setNewName('');
           setNumber('');
+          setNotification(`Added ${newName}`)
         })
         .catch((error) => {
-          console.error('Error adding person:', error);
+          // console.error('Error adding person:', error);
+          setNotification(`Error adding ${newName}`)
         });
     }
   };
@@ -114,7 +122,9 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h2 className='header'>Phonebook</h2>
+
+      <Notification message={notification} />
 
       <Filter searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
 
